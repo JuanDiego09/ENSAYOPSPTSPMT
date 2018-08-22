@@ -1,14 +1,24 @@
 package com.example.juan.ensayopsptspmt.fragments;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.juan.ensayopsptspmt.R;
+import com.example.juan.ensayopsptspmt.utilidades.Conexion;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +39,24 @@ public class TimeLog extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    Conexion conn;
+    SQLiteDatabase db;
+
+    Button btnRegistrarTime;
+    String phaseR;
+    String startR;
+    String stopR;
+    int interruptionR;
+    int deltaR;
+    String commentsR;
+
+    EditText campoStart,campoInterruption,campoStop,campoDelta,campoComments;
+
+    ArrayList arrayPhase;
+    Spinner listaPhase;
+
+
 
     public TimeLog() {
         // Required empty public constructor
@@ -64,8 +92,54 @@ public class TimeLog extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_time_log, container, false);
+        View vista = inflater.inflate(R.layout.fragment_time_log, container, false);
+        conn = new Conexion(getContext(),"Projectos",null,1);
+        arrayPhase = new ArrayList();
+        arrayPhase.add("PLAN");
+        arrayPhase.add("DLD");
+        arrayPhase.add("CODE");
+        arrayPhase.add("COMPILE");
+        arrayPhase.add("UT");
+        arrayPhase.add("PM");
+
+        listaPhase = vista.findViewById(R.id.spinnerPhaseTime);
+        ArrayAdapter<CharSequence>adapterPhase = new ArrayAdapter(getContext(),R.layout.support_simple_spinner_dropdown_item,arrayPhase);
+        listaPhase.setAdapter(adapterPhase);
+        listaPhase.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position!= 0){
+                    phaseR = arrayPhase.get(position).toString();
+                    Toast.makeText(getContext(),"phase " + phaseR, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        campoStart = vista.findViewById(R.id.campoStartTime);
+        campoInterruption = vista.findViewById(R.id.campoInterruptionTime);
+        campoStop = vista.findViewById(R.id.campoStopTime);
+        campoDelta = vista.findViewById(R.id.campoDeltaTme);
+        campoComments = vista.findViewById(R.id.campoCommentsTime);
+        btnRegistrarTime = vista.findViewById(R.id.btnRegistrarTime);
+        btnRegistrarTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registrarTime();
+            }
+        });
+
+
+        return vista;
+    }
+
+    private void registrarTime() {
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

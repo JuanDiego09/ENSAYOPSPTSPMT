@@ -1,14 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
     android:layout_height="match_parent"
     tools:context=".fragments.TimeLog">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="TIME LOG"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textSize="18dp" />
 
-</FrameLayout>
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="3">
+
+        <Spinner android:layout_columnWeight="3"
+            android:layout_marginTop="22dp"
+            android:layout_columnSpan="3"
+            android:id="@+id/spinnerPhaseTime">
+        </Spinner>
+    </GridLayout>
+
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="3">
+
+        <Button android:text="START"
+            android:id="@+id/btnStartTime"/>
+
+        <EditText android:layout_columnSpan="2"
+            android:layout_columnWeight="2"
+            android:textAlignment="center"
+            android:editable="false"
+            android:id="@+id/campoStartTime"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"/>
+
+
+        <EditText android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:id="@+id/campoInterruptionTime"
+            android:layout_columnSpan="3"
+            android:layout_columnWeight="3"
+            android:hint="tiempo de interrupciones en minutos"
+            android:textAlignment="center"/>
+
+
+        <Button android:text="STOP"
+            android:id="@+id/btnStopTime"/>
+
+        <EditText android:layout_columnSpan="2"
+            android:layout_columnWeight="2"
+            android:textAlignment="center"
+            android:editable="false"
+            android:id="@+id/campoStopTime"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"/>
+
+
+        <EditText android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:layout_columnSpan="3"
+            android:id="@+id/campoDeltaTme"
+            android:layout_columnWeight="3"
+            android:layout_marginTop="12dp"
+            android:editable="false"
+            android:hint="DELTA"
+            android:textAlignment="center"/>
+
+
+
+
+        <EditText android:layout_height="44dp"
+            android:layout_width="match_parent"
+            android:inputType="textMultiLine"
+            android:layout_columnSpan="3"
+            android:layout_columnWeight="3"
+            android:id="@+id/campoCommentsTime"
+            android:layout_marginTop="32dp"
+            android:hint="COMMENTS"
+            android:textAlignment="center"/>
+
+
+
+        <Button android:text="REGISTRAR"
+            android:id="@+id/btnRegistrarTime"
+            android:layout_columnWeight="3"
+            android:layout_columnSpan="3"
+            android:layout_marginTop="72dp"
+            android:layout_width="match_parent"/>
+
+    </GridLayout>
+
+</LinearLayout>

@@ -1,14 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="15dp"
+    android:orientation="vertical"
     tools:context=".fragments.DefectLog">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="TIME LOG"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:layout_marginBottom="22dp"
+        android:textSize="18dp" />
 
-</FrameLayout>
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="3">
+
+    <Button android:text="DATE"
+        android:id="@+id/btnDateDefe"/>
+
+    <EditText android:layout_columnSpan="2"
+        android:layout_columnWeight="2"
+        android:textAlignment="center"
+        android:editable="false"
+        android:id="@+id/campoDateDefec"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"/>
+    </GridLayout>
+
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="3">
+
+        <Spinner android:layout_columnWeight="3"
+            android:layout_marginTop="22dp"
+            android:layout_columnSpan="3"
+            android:id="@+id/spinnerType">
+        </Spinner>
+
+        <Spinner android:layout_columnWeight="3"
+            android:layout_marginTop="22dp"
+            android:layout_columnSpan="3"
+            android:id="@+id/spinnerPhaseInje">
+        </Spinner>
+
+        <Spinner android:layout_columnWeight="3"
+            android:layout_marginTop="22dp"
+            android:layout_columnSpan="3"
+            android:id="@+id/spinnerPhaseRemov">
+        </Spinner>
+
+
+        <TextView android:hint="FIX TIME"
+            android:editable="false"
+            android:layout_width="match_parent"
+            android:id="@+id/campoFixTimeDefec"
+            android:textAlignment="center"/>
+
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button android:layout_columnSpan="1"
+            android:id="@+id/btnStartDefec"
+            android:layout_columnWeight="1"
+            android:text="START"/>
+
+        <Button android:layout_columnSpan="1"
+            android:layout_columnWeight="1"
+            android:id="@+id/btnStopDefec"
+            android:text="STOP"/>
+
+        <Button android:layout_columnSpan="1"
+            android:layout_columnWeight="1"
+            android:id="@+id/btnRestartDefec"
+            android:text="RESTART"/>
+
+    </GridLayout>
+
+
+    <EditText android:layout_height="44dp"
+        android:layout_width="match_parent"
+        android:inputType="textMultiLine"
+        android:layout_columnSpan="3"
+        android:layout_columnWeight="3"
+        android:id="@+id/campoDefectDescrip"
+        android:layout_marginTop="32dp"
+        android:hint="DEFECT DESCRIPTION"
+        android:textAlignment="center"/>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="REGISTRAR"
+        android:id="@+id/btnRegistrarDefect"
+        android:layout_columnWeight="3"
+        android:layout_columnSpan="3"
+        android:layout_marginTop="52dp" />
+
+</LinearLayout>
