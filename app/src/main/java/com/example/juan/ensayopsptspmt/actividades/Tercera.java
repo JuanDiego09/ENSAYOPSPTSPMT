@@ -3,6 +3,8 @@ package com.example.juan.ensayopsptspmt.actividades;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.juan.ensayopsptspmt.R;
+
 public class Tercera extends AppCompatActivity {
 
     @Override
