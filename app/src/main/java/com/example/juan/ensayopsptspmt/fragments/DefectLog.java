@@ -4,7 +4,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +44,10 @@ public class DefectLog extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    int i =0;
+    int pausa;
+    boolean primero;
+    CountDownTimer time;
 
     Conexion conn;
     SQLiteDatabase db;
@@ -199,6 +205,52 @@ public class DefectLog extends Fragment {
             @Override
             public void onClick(View v) {
                 registrarDefect();
+            }
+        });
+        btnStart=vista.findViewById(R.id.btnStartDefec);
+        btnStop=vista.findViewById(R.id.btnStopDefec);
+        btnRestart=vista.findViewById(R.id.btnRestartDefec);
+
+
+        btnStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                time=new CountDownTimer(720000 ,1000) {
+                    @Override
+                    public void onTick(long l) {
+
+                        //if (primero==false){
+                        i++;
+                        //primero=true;
+                        //}else{
+                        // primero=false;
+                        //}
+                        campoFixTime.setText(" "+ i);
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+
+                    }
+                };
+                time.start();
+            }
+        });
+
+        btnStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pausa=i;
+                time.cancel();
+            }
+        });
+
+        btnRestart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                i=0;
+                time.start();
             }
         });
         return vista;

@@ -32,9 +32,8 @@ public class MainActivity extends AppCompatActivity {
     ProjectosVo miProjectosVo;
     ArrayList<ProjectosVo> listaProject;
     RecyclerView recyclerView;
-    CountDownTimer time;
     AdapterProjectos miProjectos;
-    int i =0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,23 +46,8 @@ public class MainActivity extends AppCompatActivity {
         listaProject = new ArrayList();
         consulta();
 
-        time=new CountDownTimer(10000 ,1000) {
-            @Override
-            public void onTick(long l) {
-
-                Log.v("Dato",""+ (l/1000));
-
-            }
-
-            @Override
-            public void onFinish() {
-
-            }
-        };
-        time.start();
 
 
-        time.start();
     }
 
     public void onCLick(View view) {
