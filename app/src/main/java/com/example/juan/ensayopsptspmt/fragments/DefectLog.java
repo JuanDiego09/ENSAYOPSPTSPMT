@@ -1,5 +1,6 @@
 package com.example.juan.ensayopsptspmt.fragments;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -18,7 +19,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.juan.ensayopsptspmt.R;
+import com.example.juan.ensayopsptspmt.entidades.ProjectosVo;
 import com.example.juan.ensayopsptspmt.utilidades.Conexion;
+import com.example.juan.ensayopsptspmt.utilidades.Utilidades;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -250,6 +253,7 @@ public class DefectLog extends Fragment {
             @Override
             public void onClick(View view) {
                 i=0;
+                time.cancel();
                 time.start();
             }
         });
@@ -258,6 +262,19 @@ public class DefectLog extends Fragment {
 
     private void registrarDefect() {
 
+        db = conn.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(Utilidades.CAMPO_ID_DEFECT, ProjectosVo.idUso);
+        values.put(Utilidades.CAMPO_DATE,dateR1);
+        values.put(Utilidades.CAMPO_TYPE,typeR);
+        values.put(Utilidades.CAMPO_PHASE_INJECTED, injectedR);
+        values.put(Utilidades.CAMPO_PHASE_REMOVE, removeR);
+        values.put(Utilidades.CAMPO_FIX_TIME, campoFixTime.getText().toString());
+        values.put(Utilidades.CAMPO_DEFECT_DESCRIPCION, campoDefectDeescription.getText().toString());
+        db.insert(Utilidades.TABLA_DEFECT, Utilidades.CAMPO_ID, values);
+        Toast.makeText(getContext(), "Se Registro con exito", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), "llene los campos", Toast.LENGTH_SHORT).show();
     }
 
     private void asignarFecha1() {
