@@ -6,11 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".actividades.Segunda">
 
-
-
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:columnCount="1">
+
+        <Button android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnTimeLog"
+            android:onClick="onClick"
+            android:text="TIME LOG"/>
+
+
+        <Button android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:id="@+id/btnDefectLog"
+            android:text="DEFECT LOG"/>
+
+
+        <Button android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="PROYECT PLAM SUMARY"
+            android:id="@+id/btnPlanSumary"/>
 
     </GridLayout>
 </LinearLayout>
