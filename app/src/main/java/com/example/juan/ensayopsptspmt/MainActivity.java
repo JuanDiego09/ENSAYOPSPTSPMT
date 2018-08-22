@@ -46,13 +46,14 @@ public class MainActivity extends AppCompatActivity {
     public void onCLick(View view) {
         bd = conn.getWritableDatabase();
 
-        campoNombre = nombre.getText().toString();
-        tiempocampo = Integer.parseInt(tiempo.getText().toString());
-        ContentValues values = new ContentValues();
-        values.put(Utilidades.CAMPO_NOMBRE, campoNombre);
-        values.put(Utilidades.CAMPO_TIEMPO, tiempocampo);
-        values.put(Utilidades.CAMPO_ID_PROJECT, numero++);
-        if (campoNombre.equals("") || tiempocampo == 0) {
+
+        if (nombre.getText().toString().equals("") ||tiempo.getText().toString().equals("")) {
+            campoNombre = nombre.getText().toString();
+            tiempocampo = Integer.parseInt(tiempo.getText().toString());
+            ContentValues values = new ContentValues();
+            values.put(Utilidades.CAMPO_NOMBRE, campoNombre);
+            values.put(Utilidades.CAMPO_TIEMPO, tiempocampo);
+            values.put(Utilidades.CAMPO_ID_PROJECT, numero++);
             bd.insert(Utilidades.TABLA_PROJECT, Utilidades.CAMPO_ID_PROJECT, values);
             Toast.makeText(getApplicationContext(), "Se Registro con exito", Toast.LENGTH_SHORT).show();
         } else {

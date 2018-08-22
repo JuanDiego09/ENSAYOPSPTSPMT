@@ -19,10 +19,18 @@
         <activity
             android:name=".actividades.TabedActivity"
             android:label="@string/title_activity_tabed"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".actividades.Segunda"/>
-        <activity android:name=".actividades.Segunda" android:parentActivityName=".MainActivity" />
-        <activity android:name=".actividades.Tercera" android:parentActivityName=".actividades.Segunda"></activity>
+            android:parentActivityName=".actividades.Segunda"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".actividades.Segunda"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".actividades.Tercera"
+            android:parentActivityName=".actividades.Segunda" />
+        <activity
+            android:name=".actividades.Main2Activity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

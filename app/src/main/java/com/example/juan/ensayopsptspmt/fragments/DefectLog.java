@@ -1,6 +1,7 @@
 package com.example.juan.ensayopsptspmt.fragments;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,8 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.juan.ensayopsptspmt.R;
+import com.example.juan.ensayopsptspmt.utilidades.Conexion;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,10 +42,15 @@ public class DefectLog extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+
+    Conexion conn;
+    SQLiteDatabase db;
+
     String typeR;
     String injectedR;
     String removeR;
-    String dateR;
+    String dateR1;
+    String dateR2;
     String fixTimeR;
     String descriptionR;
 
@@ -91,6 +100,10 @@ public class DefectLog extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View vista = inflater.inflate(R.layout.fragment_defect_log, container, false);
+        conn = new Conexion(getContext(),"Projectos",null,1);
+        campoDate = vista.findViewById(R.id.campoDateDefec);
+        campoDefectDeescription = vista.findViewById(R.id.campoDefectDescrip);
+        campoFixTime = vista.findViewById(R.id.campoFixTimeDefec);
 
         arrayType = new ArrayList();
         arrayType.add("Documentation");
@@ -173,10 +186,32 @@ public class DefectLog extends Fragment {
         });
 
 
+        btnDate = vista.findViewById(R.id.btnDateDefe);
+        btnDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                asignarFecha1();
+            }
+        });
 
-
-
+        btnRegistrar = vista.findViewById(R.id.btnRegistrarDefect);
+        btnRegistrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registrarDefect();
+            }
+        });
         return vista;
+    }
+
+    private void registrarDefect() {
+
+    }
+
+    private void asignarFecha1() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yy-mm-dd hh:mm:ss");
+        Date date = new Date();
+        dateR1 = dateFormat.format(date);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

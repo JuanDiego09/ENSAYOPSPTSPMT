@@ -152,17 +152,19 @@ public class TabedActivity extends AppCompatActivity implements AllFragments{
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
 
+
             switch (position){
                 case 1:
                     TimeInPhase timeInPhase = new TimeInPhase();
-                    break;
+                    return timeInPhase;
+
                 case 2:
                     DefectsInjected defectsInjected = new DefectsInjected();
-                    break;
+                    return defectsInjected;
 
                 case 3:
                     DefectsRemove remove = new DefectsRemove();
-                    break;
+                    return remove;
             }
             return null;
         }
