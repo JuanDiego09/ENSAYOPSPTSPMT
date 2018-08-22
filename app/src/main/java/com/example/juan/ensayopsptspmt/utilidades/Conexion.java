@@ -15,14 +15,13 @@ public class Conexion extends SQLiteOpenHelper{
         db.execSQL(Utilidades.CREAR_TABLA_TIME);
         db.execSQL(Utilidades.CREAR_TABLA_DEFECT);
         db.execSQL(Utilidades.CREAR_TABLA_PROJECT);
-        onCreate(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS "+Utilidades.TABLA_PROJECT);
-        db.execSQL("DROP TABLE IF EXISTS "+Utilidades.TABLA_DEFECT);
         db.execSQL("DROP TABLE IF EXISTS "+Utilidades.TABLA_TIME);
+        db.execSQL("DROP TABLE IF EXISTS "+Utilidades.TABLA_DEFECT);
+        db.execSQL("DROP TABLE IF EXISTS "+Utilidades.TABLA_PROJECT);
 
         onCreate(db);
 
