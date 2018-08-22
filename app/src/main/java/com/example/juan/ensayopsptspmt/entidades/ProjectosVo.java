@@ -6,6 +6,7 @@ public class ProjectosVo {
     private int id;
     private int tiempo;
 
+
     public ProjectosVo() {
     }
 
@@ -32,4 +33,6 @@ public class ProjectosVo {
     public void setTiempo(int tiempo) {
         this.tiempo = tiempo;
     }
+
+    public static int idUso;
 }

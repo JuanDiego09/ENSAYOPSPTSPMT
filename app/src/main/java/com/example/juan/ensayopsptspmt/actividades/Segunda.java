@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.juan.ensayopsptspmt.R;
+import com.example.juan.ensayopsptspmt.entidades.ProjectosVo;
 
 public class Segunda extends AppCompatActivity {
 
@@ -18,7 +19,8 @@ public class Segunda extends AppCompatActivity {
         Bundle miBundle=getIntent().getBundleExtra("dato");
 
         if (miBundle!=null){
-            Toast.makeText(getApplicationContext()," "+miBundle.getInt("id"),Toast.LENGTH_SHORT).show();
+            ProjectosVo.idUso=miBundle.getInt("id");
+            Toast.makeText(getApplicationContext()," "+ProjectosVo.idUso,Toast.LENGTH_SHORT).show();
         }
     }
 

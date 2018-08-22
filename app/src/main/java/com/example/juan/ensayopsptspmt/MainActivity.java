@@ -4,9 +4,11 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -30,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
     ProjectosVo miProjectosVo;
     ArrayList<ProjectosVo> listaProject;
     RecyclerView recyclerView;
+    CountDownTimer time;
     AdapterProjectos miProjectos;
+    int i =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,24 @@ public class MainActivity extends AppCompatActivity {
         conn = new Conexion(getApplicationContext(), "Projectos", null, 1);
         listaProject = new ArrayList();
         consulta();
+
+        time=new CountDownTimer(10000 ,1000) {
+            @Override
+            public void onTick(long l) {
+
+                Log.v("Dato",""+ (l/1000));
+
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        };
+        time.start();
+
+
+        time.start();
     }
 
     public void onCLick(View view) {
