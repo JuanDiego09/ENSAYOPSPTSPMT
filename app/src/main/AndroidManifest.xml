@@ -18,9 +18,9 @@
         </activity>
         <activity
             android:name=".actividades.TabedActivity"
-            android:label="@string/title_activity_tabed"
+            android:label="@string/app_name"
             android:parentActivityName=".actividades.Segunda"
-            android:theme="@style/AppTheme.NoActionBar" />
+            />
         <activity
             android:name=".actividades.Segunda"
             android:parentActivityName=".MainActivity" />

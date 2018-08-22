@@ -1,5 +1,6 @@
 package com.example.juan.ensayopsptspmt.fragments;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -16,9 +17,13 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.juan.ensayopsptspmt.R;
+import com.example.juan.ensayopsptspmt.entidades.ProjectosVo;
 import com.example.juan.ensayopsptspmt.utilidades.Conexion;
+import com.example.juan.ensayopsptspmt.utilidades.Utilidades;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,12 +43,17 @@ public class TimeLog extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    int tiempo1;
+    int tiempo2;
+    String time1;
+    String time2;
+
     private OnFragmentInteractionListener mListener;
 
     Conexion conn;
     SQLiteDatabase db;
 
-    Button btnRegistrarTime;
+    Button btnRegistrarTime,btnStart,btnStop;
     String phaseR;
     String startR;
     String stopR;
@@ -134,11 +144,84 @@ public class TimeLog extends Fragment {
             }
         });
 
+        btnStart = vista.findViewById(R.id.btnStartTime);
+        btnStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rasignarFecha1();
+            }
+        });
 
+        btnStop = vista.findViewById(R.id.btnStopTime);
+        btnStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rasignarFecha2();
+            }
+        });
         return vista;
     }
 
+    private void rasignarFecha1() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+        //SimpleDateFormat dat = new SimpleDateFormat("mm");
+        fecha1();
+        Date date = new Date();
+        startR = dateFormat.format(date);
+        campoStart.setText(startR);
+    }
+
+    private void rasignarFecha2() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+        //SimpleDateFormat dat = new SimpleDateFormat("mm");
+        fecha2();
+        Date date = new Date();
+        stopR = dateFormat.format(date);
+        campoStop.setText(stopR);
+
+        int t1,t2,t3;
+        t1 = Integer.parseInt(time1);
+        t2 = Integer.parseInt(time2);
+        t3 = Integer.parseInt(campoInterruption.getText().toString());
+
+
+        int resultado = (t2-t1)-t3;
+        if (resultado<0){
+            campoDelta.setText("000000");
+        }else {
+            campoDelta.setText(""+resultado);
+        }
+        //Toast.makeText(getContext(),"result " + (t2-t1),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(),"result " + (t3),Toast.LENGTH_SHORT).show();
+    }
+
+    private void fecha1() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("mm");
+        Date date = new Date();
+        time1 = dateFormat.format(date);
+    }
+
+
+    private void fecha2() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("mm");
+        Date date = new Date();
+        time2 = dateFormat.format(date);
+    }
+
     private void registrarTime() {
+
+        db = conn.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+            values.put(Utilidades.CAMPO_ID, ProjectosVo.idUso);
+            values.put(Utilidades.CAMPO_PHASE,phaseR);
+            values.put(Utilidades.CAMPO_START,startR);
+            values.put(Utilidades.CAMPO_STOP, stopR);
+            values.put(Utilidades.CAMPO_DELTA, campoDelta.getText().toString());
+            values.put(Utilidades.CAMPO_COMMENTS, campoComments.getText().toString());
+            db.insert(Utilidades.TABLA_TIME, Utilidades.CAMPO_ID, values);
+            Toast.makeText(getContext(), "Se Registro con exito", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "llene los campos", Toast.LENGTH_SHORT).show();
 
     }
 
