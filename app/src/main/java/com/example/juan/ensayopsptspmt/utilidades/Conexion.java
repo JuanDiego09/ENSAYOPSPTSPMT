@@ -25,5 +25,6 @@ public class Conexion extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS "+Utilidades.TABLA_TIME);
 
         onCreate(db);
+
     }
 }
