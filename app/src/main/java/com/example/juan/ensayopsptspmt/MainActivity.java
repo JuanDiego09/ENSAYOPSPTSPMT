@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.juan.ensayopsptspmt.actividades.Segunda;
+import com.example.juan.ensayopsptspmt.actividades.TabedActivity;
 import com.example.juan.ensayopsptspmt.adapter.AdapterProjectos;
 import com.example.juan.ensayopsptspmt.entidades.ProjectosVo;
 import com.example.juan.ensayopsptspmt.utilidades.Conexion;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         bd = conn.getWritableDatabase();
 
 
-        if (nombre.getText().toString().equals("") ||tiempo.getText().toString().equals("")) {
+        if (!(nombre.getText().toString().equals("") || tiempo.getText().toString().equals(""))) {
             campoNombre = nombre.getText().toString();
             tiempocampo = Integer.parseInt(tiempo.getText().toString());
             ContentValues values = new ContentValues();
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Bundle miBundle=new Bundle();
                 miBundle.putInt("id",listaProject.get(recyclerView.getChildAdapterPosition(view)).getId());
-                Intent mIntent=new Intent(MainActivity.this, Segunda.class);
+                Intent mIntent=new Intent(MainActivity.this,Segunda.class);
                 mIntent.putExtra("dato",miBundle);
                 startActivity(mIntent);
             }
