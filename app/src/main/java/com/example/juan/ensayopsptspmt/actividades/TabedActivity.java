@@ -154,15 +154,15 @@ public class TabedActivity extends AppCompatActivity implements AllFragments{
 
 
             switch (position){
-                case 1:
+                case 0:
                     TimeInPhase timeInPhase = new TimeInPhase();
                     return timeInPhase;
 
-                case 2:
+                case 1:
                     DefectsInjected defectsInjected = new DefectsInjected();
                     return defectsInjected;
 
-                case 3:
+                case 2:
                     DefectsRemove remove = new DefectsRemove();
                     return remove;
             }

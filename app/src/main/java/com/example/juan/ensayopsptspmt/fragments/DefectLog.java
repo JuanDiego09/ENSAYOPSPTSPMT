@@ -209,9 +209,10 @@ public class DefectLog extends Fragment {
     }
 
     private void asignarFecha1() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yy-mm-dd hh:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
         Date date = new Date();
         dateR1 = dateFormat.format(date);
+        campoDate.setText(dateR1);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

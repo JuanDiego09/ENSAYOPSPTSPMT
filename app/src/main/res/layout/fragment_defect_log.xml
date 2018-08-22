@@ -42,19 +42,16 @@
         android:columnCount="3">
 
         <Spinner android:layout_columnWeight="3"
-            android:layout_marginTop="22dp"
             android:layout_columnSpan="3"
             android:id="@+id/spinnerType">
         </Spinner>
 
         <Spinner android:layout_columnWeight="3"
-            android:layout_marginTop="22dp"
             android:layout_columnSpan="3"
             android:id="@+id/spinnerPhaseInje">
         </Spinner>
 
         <Spinner android:layout_columnWeight="3"
-            android:layout_marginTop="22dp"
             android:layout_columnSpan="3"
             android:id="@+id/spinnerPhaseRemov">
         </Spinner>
